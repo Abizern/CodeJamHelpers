@@ -21,26 +21,23 @@ public func readInts() -> [Int] {
 extension String {
   /// Splits a string into words on a single blank space.
   public func words() -> [String] {
-    return self.componentsSeparatedByString(" ")
+    return self.components(separatedBy: " ")
   }
 }
 
-extension SequenceType where Generator.Element == String {
+extension Sequence where Iterator.Element == String {
   /// Returns a string by inserting a single blank space between members.
   public func unwords() -> String {
-    return self.joinWithSeparator(" ")
+    return self.joined(separator: " ")
   }
 }
 
-
-/// Outputs a solution to the standard output in the required format.
+/// Outputs the solution to the Standard Output in the required format.
 ///
 /// - Parameters:
-///   - n:      The case number
-///   - output: The solution. This can either be a String or a closure.
-///
-/// - Returns: A string in the form `Case #<n>: <solution>`
-public func printCase(n: Int, @autoclosure output: () -> String) {
+///   - n: The case number.
+///   - output: The solution. This could either be a String value or a closure that evaluates to a String.
+public func printCase(_ n: Int, output: @autoclosure () -> String) {
   print("Case #\(n): " + output())
 }
 
